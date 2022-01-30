@@ -13,7 +13,7 @@ import java.util.Observer;
  * @author (votre nom)
  * @version (un num√©ro de version ou une date)
  */
-public class Vue extends JPanel {// √† compl√©ter
+public class Vue extends JPanel implements Observer{
 
     private JLabel etatPile;
     private PileModele<Integer> pile;
@@ -26,8 +26,12 @@ public class Vue extends JPanel {// √† compl√©ter
         add(etatPile);
         setBackground(Color.green);
         // inscription aupr√®s du mod√®le comme observateur
+        pile.addObserver(this);
     }
 
+     /**
+     * Mettre ‡ jour la vue suite ‡ une Èmission du modËle.
+     */
     public void update(Observable obs, Object arg) {
         etatPile.setText(pile.toString()); // ou obs.toString()
     }
